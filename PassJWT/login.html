@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <a class="pq" href="/home">HOME</a>
+
+    <h1 class="login">Login</h1>
+    <hr>
+    <form action="/login" method="post">
+        <p class="input-label">Username</p>
+        <p class="input-label"><input class="input-label" type="text" placeholder="กรุณากรอก user" name="user"></p>
+        <p class="input-label">Password</p>
+        <p class="input-label"><input class="input-label" type="password" placeholder="กรุณากรอก pass" name="pass"></p>
+        <br>
+        <p class="input-label"><input type="submit" value="Login"></p>
+    </form>
+</body>
+<style>
+    .input-label {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .login {
+        text-align: center;
+        color: rgb(16, 73, 197);
+        font-size: 30px;
+        text-shadow: 2px 2px 5px rgb(238, 4, 35);
+    }
+
+    .pq {
+        color: rgb(88, 8, 238);
+        font-size: 50px;
+        text-shadow: 2px 2px 5px red;
+        text-align: center;
+    }
+</style>
+
+</html>
