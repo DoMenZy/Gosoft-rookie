@@ -18,26 +18,26 @@ const app = express();
 app.use(express.json());
 
 app.use((req, response, next)=>{
-    if(req.path == "/login") return next()
+    if(req.path === "/login") return next()
 
-    const authheader = req.headers.authorization
+    const authHeader = req.headers.authorization
 
-    if(!authheader) return response.json({msg: "error unauthorize"})
+    if(!authHeader) return response.json({msg: "error unauthorize"})
 
-    jwt.verify(authheader.split(' ')[1], jwtsecret, (err, result) => {
+    jwt.verify(authHeader.split(' ')[1], jwtsecret, (err, result) => {
         if (err) {
-            return response.json({msg: "error unauthorize"})
+            return response.json({msg: "error unauthorized"})
         }
         next()
     })
 })
 
 app.post('/login', (req, response) => {
-    if (req.body.user == "admin" && req.body.pass == "1234") {
+    if (req.body.user === "admin" && req.body.pass === "1234") {
         const token = jwt.sign({ username: "admin" }, jwtsecret)
         return response.json({token})
     }
-    return response.status(400).send("error invalId data");
+    return response.status(400).send("error invalid data");
 })
 
 app.get('/getDataEmp', (req, response) => {
@@ -85,7 +85,7 @@ app.put('/updateDataEmp', (req, response) => {
         !req.body.Tel ||
         !req.body.Email
         ) {
-        return response.status(400).send("error invalId data");
+        return response.status(400).send("error invalid data");
     }
     
     const sql = 'update emp set Pos = :Pos, Tel = :Tel, Email = :Email where Id = :Id'
@@ -98,7 +98,7 @@ app.put('/updateDataEmp', (req, response) => {
         if(err) {
             return response.status(400).json(err)
         }
-        if(result.affectedRows == 0) return response.status(400).json({data: "emp not found"})
+        if(result.affectedRows === 0) return response.status(400).json({data: "emp not found"})
         return response.json({ data: "ok" })
     })
 })
@@ -113,7 +113,7 @@ app.delete('/deleteDataEmp', (req, response) => {
         if(err) {
             return response.status(400).json(err)
         }
-        if(result.affectedRows == 0) return response.status(400).json({data: "emp not found"})
+        if(result.affectedRows === 0) return response.status(400).json({data: "emp not found"})
         return response.json({ data: "ok" })
     })
 })
